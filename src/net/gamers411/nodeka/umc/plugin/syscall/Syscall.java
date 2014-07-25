@@ -1,14 +1,14 @@
-package net.gamers411.nodeka.umc.plugin;
+package net.gamers411.nodeka.umc.plugin.syscall;
 
 import com.lsd.umc.script.ScriptInterface;
 
-public class syscall
+public class Syscall
 {
   private ScriptInterface script;
   protected String version = "1.0.1";
-  private callSystemThread cmd;
+  private ExecuteCommandThread cmd;
 
-  public syscall()
+  public Syscall()
   {
     this.script = null;
     this.cmd = null;
@@ -16,15 +16,15 @@ public class syscall
 
   public void init(ScriptInterface script) {
     this.script = script;
-    this.cmd = new callSystemThread();
+    this.cmd = new ExecuteCommandThread();
 
     script.print("SysCall Plugin v" + this.version + " Loaded.");
     script.print("-- Brought to you by Nemesis");
     script.print("-- http://nodeka.gamers411.net/");
     script.print("\001");
 
-    script.registerCommand("SYSCALL", "net.gamers411.nodeka.umc.plugin.syscall", "SysCalltem");
-    script.registerCommand("KILLCALL", "net.gamers411.nodeka.umc.plugin.syscall", "stopSystem");
+    script.registerCommand("SYSCALL", "net.gamers411.nodeka.umc.plugin.syscall.Syscall", "SysCalltem");
+    script.registerCommand("KILLCALL", "net.gamers411.nodeka.umc.plugin.syscall.Syscall", "stopSystem");
   }
 
   public String SysCalltem(String command)
@@ -35,7 +35,7 @@ public class syscall
     }
     if (!this.cmd.isAlive())
       try {
-        this.cmd = new callSystemThread(this.script, command);
+        this.cmd = new ExecuteCommandThread(this.script, command);
         this.cmd.start();
       } catch (Exception ex) {
         this.script.print("[SysCall] Error: " + ex.getMessage() + "\001");

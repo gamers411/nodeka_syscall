@@ -1,22 +1,22 @@
-package net.gamers411.nodeka.umc.plugin;
+package net.gamers411.nodeka.umc.plugin.syscall;
 
 import com.lsd.umc.script.ScriptInterface;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class callSystemThread extends Thread
+public class ExecuteCommandThread extends Thread
 {
   private ScriptInterface script;
   private String command;
 
-  public callSystemThread(ScriptInterface script, String command)
+  public ExecuteCommandThread(ScriptInterface script, String command)
   {
     this.script = script;
     this.command = command;
   }
 
-  public callSystemThread() {
+  public ExecuteCommandThread() {
     this.script = null;
     this.command = null;
   }
