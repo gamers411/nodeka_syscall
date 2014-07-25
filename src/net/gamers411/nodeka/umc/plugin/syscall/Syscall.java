@@ -5,7 +5,7 @@ import com.lsd.umc.script.ScriptInterface;
 public class Syscall
 {
   private ScriptInterface script;
-  protected String version = "1.0.1";
+  protected String version = "1.1.0";
   private ExecuteCommandThread cmd;
 
   public Syscall()
